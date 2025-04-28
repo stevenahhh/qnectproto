@@ -381,7 +381,10 @@
     });
 
     document.getElementById('go-cart')
-      .addEventListener('click', () => alert('장바구니로 이동'));
+      .addEventListener('click', () => {
+        // 결제 페이지로 이동
+        window.location.href = 'payment.html';
+      });
   </script>
 </body>
 

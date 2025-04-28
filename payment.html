@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>결제 페이지</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    body {
+      font-family: "Wanted Sans Variable", sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 16px;
+      border-radius: 6px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .item-list {
+      margin-bottom: 16px;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      margin-top: 8px;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+    }
+
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      color: #fff;
+      background: #28a745;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:active {
+      background: #218838;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2> 결제</h2>
+    <div class="item-list" id="item-list">
+      <!-- JS에서 채움 -->
+    </div>
+    <div class="total" id="total">
+      <span>총 합계</span><span>₩0</span>
+    </div>
+    <div class="form-group">
+      <label for="card-number">카드 번호</label>
+      <input type="text" id="card-number" placeholder="1234 5678 9012 3456" />
+    </div>
+    <div class="form-group">
+      <label for="expiry">유효 기간</label>
+      <input type="text" id="expiry" placeholder="MM/YY" />
+    </div>
+    <div class="form-group">
+      <label for="cvc">CVC</label>
+      <input type="text" id="cvc" placeholder="123" />
+    </div>
+    <button id="pay-btn">결제하기</button>
+  </div>
+
+  <script>
+    // 테스트용 하드코딩된 장바구니 아이템
+    const cartItems = [
+      { name: '메뉴 1', price: 8000 },
+      { name: '비빔밥', price: 9000 }
+    ];
+    const listEl = document.getElementById('item-list');
+    let sum = 0;
+    cartItems.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'item';
+      div.innerHTML = `<span>${item.name}</span><span>₩${item.price.toLocaleString()}</span>`;
+      listEl.appendChild(div);
+      sum += item.price;
+    });
+    document.getElementById('total').children[1].textContent = '₩' + sum.toLocaleString();
+
+    document.getElementById('pay-btn').addEventListener('click', () => {
+      alert('결제가 완료되었습니다! ()');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+
+</html>
